@@ -1,0 +1,7 @@
+#chatingbox {
+  height: 55vh;
+  overflow-y: scroll;
+}
+#chattext {
+  bottom: 4px;
+}

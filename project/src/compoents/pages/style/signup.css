@@ -1,0 +1,9 @@
+.signin-height {
+  height: 70vh;
+}
+
+.signinimg {
+  background: url(../../Images/welcomeImg.jpg) no-repeat center center;
+  background-size: cover;
+  background-position: cover;
+}
