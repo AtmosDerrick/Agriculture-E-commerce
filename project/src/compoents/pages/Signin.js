@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import GoogleButton from "react-google-button";
 import { UserAuth } from "../../context/AuthContext";
 
 const Signin = () => {
+  let navigate = useNavigate();
   const { googleSignIn } = UserAuth();
 
   const handleGoogleSignIn = async () => {
@@ -15,7 +17,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-between mr-8 ">
       <GoogleButton onClick={handleGoogleSignIn} />
     </div>
   );

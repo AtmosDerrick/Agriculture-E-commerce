@@ -121,6 +121,7 @@ function Sell() {
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="name"
+            maxlength="20"
             type="text"
             placeholder="Osei Mavis"
             value={name}
@@ -137,6 +138,7 @@ function Sell() {
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
+            maxlength="20"
             type="text"
             placeholder="Farm Produce"
             value={productName}
@@ -170,12 +172,14 @@ function Sell() {
 
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold " for="username">
-            Price
+            Price{" "}
+            <span className="text-sm text-gray-500 font-normal">(In Ghc)</span>
           </label>
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
-            type="text"
+            maxlength="10"
+            type="number"
             placeholder="Ghc 00.00"
             value={price}
             onChange={(e) => {
@@ -191,6 +195,7 @@ function Sell() {
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
+            maxlength="20"
             type="text"
             placeholder="Accra"
             value={location}
@@ -201,14 +206,16 @@ function Sell() {
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold " for="username">
+          <label class="block text-gray-700 text-sm font-bold " for="phone">
             Contact
           </label>
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="059 4132077"
+            id="phone"
+            type="tel"
+            name="phone"
+            maxLength="10"
+            placeholder="0247777777"
             value={contact}
             onChange={(e) => {
               setContact(e.target.value);
@@ -228,6 +235,7 @@ function Sell() {
             <textarea
               className=" border-gray-500 border-2"
               name="description"
+              maxlength="30"
               id="sellTextArea"
               cols="25"
               rows="2"

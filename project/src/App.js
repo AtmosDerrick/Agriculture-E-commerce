@@ -4,17 +4,18 @@ import NavBar from "./compoents/pages/NavBar";
 import Category from "./compoents/pages/Category";
 import BuySell from "./compoents/pages/BuySell";
 import Sell from "./compoents/pages/Sell";
-import Experts from "./compoents/pages/Experts";
+import Experts from "./compoents/pages/Expert/Experts";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ExpertChat from "./compoents/pages/ExpertChat";
+import ExpertChat from "./compoents/pages/Expert/ExpertChat";
 import CropChat from "./compoents/pages/CropChat";
 import { AuthContextProvider } from "./context/AuthContext";
 import LandingP from "./compoents/pages/LandingP";
 import Protected from "./compoents/pages/Protected";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
+import AnimalChat from "./compoents/pages/AnimalChat";
 
 function App() {
   const [username, setUsername] = useState(" ");
@@ -42,6 +43,7 @@ function App() {
               <Route path="/experts" element={<Experts />} />
               <Route path="/expertchat" element={<ExpertChat />} />
               <Route path="/cropchat" element={<CropChat />} />
+              <Route path="animalchat" element={<AnimalChat />} />
             </Routes>
           </BrowserRouter>
         </DatabaseContextProvider>

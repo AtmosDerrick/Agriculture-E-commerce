@@ -35,7 +35,7 @@ function BuySell() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-8">
+      <div className="grid grid-cols-4 gap-4 mt-8 ">
         {products.map((product) => (
           <div
             key={product.uuid}
@@ -49,16 +49,14 @@ function BuySell() {
             />
 
             <div className="pt-2">
-              <div className="flex justify-between px-4 ">
-                <div className="w-1/2 text-base">Item Name</div>
-                <div className="w-full text-base font-bold text-right text-green-500">
-                  {product.productName}
+              <div className="px-4 bg-green-800 text-white">
+                <div className="w-full text-lg text-center font-bold  text-green-white py-2">
+                  {product.productName.toString().toUpperCase()}
                 </div>
               </div>
 
-              <div className="flex justify-between px-4 ">
-                <div className="w-1/2 text-base">Price</div>
-                <div className="w-full text-base font-bold text-right text-green-500">
+              <div className="px-4 ">
+                <div className="w-full text-lg font-bold text-right text-green-500">
                   Ghc {product.price}
                 </div>
               </div>
@@ -66,26 +64,30 @@ function BuySell() {
               <div className="flex justify-between px-4">
                 <div className="w-1/2 text-base">Location</div>
                 <div className="w-full text-base font-bold text-right text-green-500">
-                  {product.location}
+                  {product.location.toString().toUpperCase()}
+                </div>
+              </div>
+
+              <div className="flex justify-between px-4">
+                <div className="w-1/2 text-base">Contact</div>
+                <div className="w-full text-base font-bold text-right text-green-500">
+                  {product.contact.toString().toUpperCase()}
                 </div>
               </div>
 
               <div className=" px-4 py-1">
-                <div className="w-1/2 text-base text-green-500">
+                <div className="w-1/2 text-base text-black underline ">
                   Description
                 </div>
-                <div className="w-full text-base  text-left text-black">
+                <div className="w-full text-base   text-left text-black">
                   {product.description}
                 </div>
               </div>
             </div>
             <div className="flex justify-around w-full mt-4">
-              <div className="bg-white text-green-500 font-medium w-full mx-4 text-center p-2 rounded">
-                <button>Buy</button>
-              </div>
-              <div className="bg-green-500 font-medium w-full mx-4 p-2 text-center  rounded">
-                Contact
-              </div>
+              <button className="bg-green-500 text-lg text-white px-4 font-medium w-full mx-2 p-2 text-center  rounded">
+                Order
+              </button>
             </div>
           </div>
         ))}

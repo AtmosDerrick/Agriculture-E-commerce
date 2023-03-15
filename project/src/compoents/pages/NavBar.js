@@ -4,10 +4,14 @@ import { UserAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import Signin from "./Signin";
+import ExpertSignin from "./Expert/ExpertSignin";
 
 export default function Navbar() {
   const { user, logOut } = UserAuth();
   const navigate = useNavigate();
+  const expertEmail = "atmosderrick@gmail.com";
+
+  console.log("expert userrrrrrr", user);
 
   const handleSignOut = async () => {
     try {
@@ -19,8 +23,12 @@ export default function Navbar() {
 
   useEffect(() => {
     if (user != null) {
-      navigate("/category");
-      console.log("man", user);
+      if (user.email === "atmosderrick2@gmail.com") {
+        navigate("/expertchat");
+      } else {
+        navigate("/category");
+        console.log("man", user);
+      }
     } else {
       navigate("/");
     }
@@ -31,7 +39,7 @@ export default function Navbar() {
         Agro-Solution
       </div>
       {console.log("nav", user)}
-      {user?.displayName ? (
+      {user?.email ? (
         <div className="w-auto  flex justify-between">
           <div className="uppercase text-base font-semibold text-white pt-2 pr-8">
             {user?.displayName}
@@ -46,7 +54,10 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <Signin />
+        <div className="flex justify-between">
+          <Signin />
+          <ExpertSignin />
+        </div>
       )}
     </div>
   );
