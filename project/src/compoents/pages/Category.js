@@ -8,7 +8,7 @@ function Category({ title }) {
   return (
     <div>
       <div className="flex justify-between w-full h-auto mt-8">
-        <div className="w-full bg-green-800   shadow-xl h-auto">
+        <div className="w-full bg-gradient-to-r from-green-800  to-green-500   shadow-xl h-auto">
           {
             <div>
               <div className="text-white text-center font-medium text-lg pt-4">

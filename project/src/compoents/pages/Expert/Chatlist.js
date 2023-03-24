@@ -12,11 +12,24 @@ function Chatlist() {
   const { user } = UserAuth();
   const [messages, setMessages] = useState([]);
   const [userEmail, setUserEmail] = useState("");
-
-  const category = "crop";
+  const [category, setCategory] = useState("crop");
 
   useEffect(() => {
-    const q = query(collection(store, "crop"), orderBy("timestamp"));
+    console.log("sg", category);
+    if (user.email == "cropexpert@gmail.com") {
+      setCategory("crop");
+      console.log("sg", category);
+    } else if (user.email == "animalexpert@gmail.com") {
+      setCategory("animal");
+      console.log("sg", category);
+    } else {
+      setCategory("crop");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("sgq", category);
+    const q = query(collection(store, category), orderBy("timestamp"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let messages = [];
       querySnapshot.forEach((doc) => {
@@ -47,10 +60,10 @@ function Chatlist() {
 
   console.log("filtered", filteredObj);
 
+  const [expertEmail, setExpertEmail] = useState(user.email);
+
   const fetchMessage = messages.filter((message) => {
-    return (
-      message.email == "atmosderrick2@gmail.com" || message.email == userEmail
-    );
+    return message.email == expertEmail || message.email == userEmail;
   });
 
   // seet email to current email to view only that chat
@@ -60,10 +73,7 @@ function Chatlist() {
     console.log("userEmailllll", particularEmail);
 
     const onlyexpertmessage = fetchMessage.filter((message) => {
-      return (
-        message.receiver === userEmail ||
-        message.email == "atmosderrick2@gmail.com"
-      );
+      return message.receiver === userEmail || message.email == expertEmail;
     });
   };
 

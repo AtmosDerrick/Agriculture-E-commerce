@@ -16,6 +16,7 @@ import Protected from "./compoents/pages/Protected";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
 import AnimalChat from "./compoents/pages/AnimalChat";
+import Admin from "./compoents/pages/Admin/Admin";
 
 function App() {
   const [username, setUsername] = useState(" ");
@@ -29,7 +30,6 @@ function App() {
 
             <Routes>
               <Route path="/" element={<LandingP />} />
-
               <Route
                 path="/category"
                 element={
@@ -41,9 +41,11 @@ function App() {
               <Route path="/buyandsell" element={<BuySell />} />
               <Route path="/sell" element={<Sell />} />
               <Route path="/experts" element={<Experts />} />
+              <Route path="/experts" element={<Experts />} />
               <Route path="/expertchat" element={<ExpertChat />} />
               <Route path="/cropchat" element={<CropChat />} />
-              <Route path="animalchat" element={<AnimalChat />} />
+              <Route path="/animalchat" element={<AnimalChat />} />
+              <Route path="admin" element={<Admin />} />
             </Routes>
           </BrowserRouter>
         </DatabaseContextProvider>

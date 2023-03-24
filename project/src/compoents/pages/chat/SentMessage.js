@@ -44,6 +44,8 @@ function SentMessage({ scroll, category }) {
         type="text"
         placeholder="message"
       />
+      <input className="w-[20%] bg-orange-500 mr-4" type="file" accept=".jpg" />
+
       <button className="w-[20%] bg-green-500" type="submit">
         Send
       </button>

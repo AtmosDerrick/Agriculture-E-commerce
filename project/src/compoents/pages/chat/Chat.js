@@ -5,7 +5,7 @@ import Message from "./Message";
 import SentMessage from "./SentMessage";
 import { UserAuth } from "../../../context/AuthContext";
 
-function Chat({ messagesChatCategory }) {
+function Chat({ messagesChatCategory, expertLocationEmail }) {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
   const { user } = UserAuth();
@@ -30,8 +30,7 @@ function Chat({ messagesChatCategory }) {
 
   const fetchMessage = messages.filter((message) => {
     return (
-      message.email === user.email ||
-      message.email === "atmosderrick2@gmail.com"
+      message.email === user.email || message.email === expertLocationEmail
     );
   });
 

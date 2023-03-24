@@ -15,7 +15,13 @@ function Signin() {
       .then((userCredential) => {
         // Signed in
         const expertUser = userCredential.user;
-        navigate("/expertchat");
+        if (expertUser.email === "admin@gmail.com") {
+          navigate("admin");
+        } else if (expertUser.email === "cropexpert@gmail.com") {
+          navigate("/expertchat");
+        } else if (expertUser.email === "animalexpert@gmail.com") {
+          navigate("/expertchat");
+        }
         console.log(expertUser, "expert user working");
         // ...
       })

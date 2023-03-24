@@ -23,7 +23,12 @@ export default function Navbar() {
 
   useEffect(() => {
     if (user != null) {
-      if (user.email === "atmosderrick2@gmail.com") {
+      if (user.email === "admin@gmail.com") {
+        navigate("admin");
+      } else if (
+        user.email === "cropexpert@gmail.com" ||
+        user.email === "animalexpert@gmail.com"
+      ) {
         navigate("/expertchat");
       } else {
         navigate("/category");
@@ -34,8 +39,8 @@ export default function Navbar() {
     }
   }, [user]);
   return (
-    <div className="w-full  flex justify-between h-[-20vh] p-4 bg-green-800">
-      <div className="uppercase font-bold italic text-white text-xls">
+    <div className="w-full  flex justify-between h-[-20vh] p-4 bg-gradient-to-r from-green-800 via-green-500 to-green-800">
+      <div className="uppercase font-bold italic text-white text-xl">
         Agro-Solution
       </div>
       {console.log("nav", user)}

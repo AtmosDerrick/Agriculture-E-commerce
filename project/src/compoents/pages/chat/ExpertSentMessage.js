@@ -22,7 +22,7 @@ function ExpertSentMessage({ scroll, category, receiver }) {
       text: input,
       name: displayName,
       uid,
-      email: receiver,
+      email: user.email,
       recieve: receiver,
 
       timestamp: serverTimestamp(),
