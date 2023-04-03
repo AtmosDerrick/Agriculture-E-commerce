@@ -32,7 +32,6 @@ function Sell() {
   console.log("dsfdfad", date);
   console.log("dsfdfad", time);
 
-  const [name, setName] = useState("");
   const [productName, setProductName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
@@ -54,7 +53,7 @@ function Sell() {
   console.log("image", image);
 
   const submitForm = (e) => {
-    if (name === "" || productName === "" || price === "" || location === "") {
+    if (productName === "" || price === "" || location === "") {
       setAlert(true);
       setTimeout(() => {
         setAlert(false);
@@ -75,7 +74,7 @@ function Sell() {
               //write
               const uuid = uid();
               set(ref(db, `/${uuid}`), {
-                name,
+                name: user.displayName,
                 email: userEmail,
                 productName,
                 category,
@@ -99,7 +98,6 @@ function Sell() {
         });
       console.log("url", url);
 
-      setName("");
       setProductName("");
       setPrice("");
       setLocation("");
@@ -132,9 +130,8 @@ function Sell() {
         <div className="w-1/4 text-2xl my-2 text-center bg-gradient-to-r from-orange-500  to-red-500 py-2 px-4 font-semibold uppercase text-white ">
           <button
             onClick={() => {
-              navigate("../buyandsell");
-            }}
-          >
+              navigate("../category");
+            }}>
             <span className="text-white">
               <i class="fa-solid fa-left-long"></i>
             </span>
@@ -146,8 +143,7 @@ function Sell() {
           <button
             onClick={() => {
               setOrderRecieve(!orderRecieve);
-            }}
-          >
+            }}>
             {orderRecieve ? "Item List" : "Orders Recieve"}
           </button>
         </div>
@@ -159,26 +155,6 @@ function Sell() {
       )}
       <div className="w-full mx-auto flex justify-between gap-2 sell py-2">
         <form class="bg-white w-1/2  mr-4 mx-auto rounded-lg  px-8 pt-6 pb-2 mb-4 shadow-lg">
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 text-sm font-bold mb-0"
-              for="username"
-            >
-              Name
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              maxlength="20"
-              type="text"
-              placeholder="Osei Mavis"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
-
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold" for="username">
               Product Name
@@ -198,8 +174,7 @@ function Sell() {
           <div className="mb-4">
             <label
               class="block text-gray-700 text-sm font-bold "
-              for="username"
-            >
+              for="username">
               Category
             </label>
             <select
@@ -209,8 +184,7 @@ function Sell() {
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
-              }}
-            >
+              }}>
               <option value="machinery" disabled>
                 Select Product type and service
               </option>
@@ -224,8 +198,7 @@ function Sell() {
           <div class="mb-4">
             <label
               class="block text-gray-700 text-sm font-bold "
-              for="username"
-            >
+              for="username">
               Price{" "}
               <span className="text-sm text-gray-500 font-normal">
                 (In Ghc)
@@ -247,8 +220,7 @@ function Sell() {
           <div class="mb-4">
             <label
               class="block text-gray-700 text-sm font-bold "
-              for="username"
-            >
+              for="username">
               Location
             </label>
             <input
@@ -286,8 +258,7 @@ function Sell() {
             <div>
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
-              >
+                for="username">
                 Description
               </label>
 
@@ -301,14 +272,12 @@ function Sell() {
                 value={description}
                 onChange={(e) => {
                   setDescription(e.target.value);
-                }}
-              ></textarea>
+                }}></textarea>
             </div>
             <div>
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
-              >
+                for="username">
                 Upload Product Image
               </label>
               <input
@@ -325,8 +294,7 @@ function Sell() {
                 <button
                   class="bg-green-800 hover:bg-green-800 text-white font-bold py-2 px-8 ml-8 rounded focus:outline-none focus:shadow-outline"
                   type="button"
-                  onClick={submitForm}
-                >
+                  onClick={submitForm}>
                   {isLoading ? <span>Loading</span> : <span>Submit</span>}
                 </button>
               </div>
@@ -356,8 +324,7 @@ function Sell() {
                   </div>
                   <button
                     className="text-lg text-green-800 font-semibold  p-2"
-                    onClick={() => handleDelete(product)}
-                  >
+                    onClick={() => handleDelete(product)}>
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>

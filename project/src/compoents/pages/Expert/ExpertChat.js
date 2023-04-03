@@ -5,7 +5,21 @@ import { UserAuth } from "../../../context/AuthContext";
 function ExpertChat() {
   const { user } = UserAuth();
 
-  return <div className="">{<Chatlist />}</div>;
+  if (user.email == "cropexpert@gmail.com") {
+    var category = "crop";
+    console.log("sg", category);
+  } else if (user.email == "animalexpert@gmail.com") {
+    var category = "animal";
+    console.log("sg", category);
+  } else if (user.email == "fishexpert@gmail.com") {
+    var category = "fish";
+  }
+
+  return (
+    <div className="">
+      <Chatlist category={category} />
+    </div>
+  );
 }
 
 export default ExpertChat;

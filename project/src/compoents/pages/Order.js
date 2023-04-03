@@ -137,108 +137,113 @@ function Order({
   };
 
   return (
-    <div className="w-2/4 p-2 mx-auto  h-screen ">
-      {Alert && (
-        <div className="w-full bg-red-600 text-white text-lg py-2  text-center mb-2">
-          Complete your details
+    <div className="w-2/4  mx-auto rounded-lg h-[30rem] ">
+      <div className="">
+        {Alert && (
+          <div className="w-full bg-red-600 text-white text-lg py-2  text-center mb-2">
+            Complete your details
+          </div>
+        )}
+        <div className="w-full  ">
+          <div className="w-full mx-auto   flex center ">
+            <img src={url} alt={productName} className="w-full h-[15rem]" />
+          </div>
         </div>
-      )}
-      <div className="w-full h-[25rem]  py-4 bg-green-100 ">
-        <div className="w-2/4 mx-auto   flex center ">
-          <img
-            src={url}
-            alt={productName}
-            className=""
-            width="300px"
-            height="300px"
-          />
+
+        <div className="  bg-white ">
+          <div className="px-2  text-left text-2xl py-4 text-black font-mono font-medium">
+            <div className="uppercase text-xl">
+              <div className="w-full flex justify-between">
+                <div className="text-3xl text-orange-500 font-bold">
+                  {productName}
+                </div>
+                <div className="uppercase italic text-lg text-black font-bold ">
+                  <span className="text-orange-500">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                  </span>
+                  Ghc {price}
+                </div>
+                <div>
+                  <span className="text-orange-500">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </span>
+                  {location}
+                </div>
+                <div>
+                  <span className="text-orange-500">
+                    <i class="fa-solid fa-phone"></i>
+                  </span>
+                  {contact}
+                </div>
+              </div>
+
+              <div>
+                <span className="">Description: </span> {description}
+              </div>
+            </div>
+          </div>
+          <form>
+            <div className="w-3/4 mx-auto  h-[10rem] ">
+              <div className="w-full flex justify-between">
+                <div className="w-1/2">
+                  <input
+                    type="number"
+                    placeholder="Enter Quantity"
+                    className="w-3/4 pl-2 h-12 mt-4 border-4 border-black text-lg rounded-lg"
+                    onChange={(e) => {
+                      setQuantity(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-full">
+                <div className="w-full h-12  mt-2 border-4 border-black text-lg rounded-lg">
+                  <select
+                    id="regions"
+                    name="regions"
+                    value={selectedRegion}
+                    onChange={handleRegionChange}>
+                    <option value="">Select a Region</option>
+                    {regions.map((region) => (
+                      <option key={region.region} value={region.region}>
+                        {region.region}
+                      </option>
+                    ))}
+                  </select>
+                  {cities.length > 0 && (
+                    <div className="w-full h-12 mt-8 border-4 border-black text-lg rounded-lg">
+                      <label htmlFor="cities">Select City:</label>
+                      <select
+                        id="cities"
+                        name="cities"
+                        value={selectedCity}
+                        onChange={handleCityChange}>
+                        <option value="">Select a City</option>
+                        {cities.map((city) => (
+                          <option key={city} value={city}>
+                            {city}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-
-      <div className="mt-[-60px] bg-white rounded-t-3xl">
-        <div className="w-3/4 mx-auto   text-left text-2xl  ml-4 py-4 text-black font-mono font-medium">
-          <div className="uppercase text-xl">
-            <div className="w-full flex justify-between">
-              <div className="text-2xl text-gray-800 font-medium tracking-widest">
-                {productName}
-              </div>
-              <div className="uppercase italic text-xl text-black font-bold tracking-widest">
-                {" "}
-                Ghc {price}
-              </div>
-            </div>
-
-            <div>{location}</div>
-            <div>{contact}</div>
-            <div>
-              <span className="">Description </span> {description}
-            </div>
-          </div>
-        </div>
-        <form>
-          <div className="w-3/4 mx-auto  px-4">
-            <div className="w-full flex justify-between">
-              <div className="w-1/2">
-                <input
-                  type="number"
-                  placeholder="Enter Quantity"
-                  className="w-full pl-2 h-12 mt-4 border-4 border-black text-lg rounded-lg"
-                  onChange={(e) => {
-                    setQuantity(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-            <div className="w-full">
-              <div className="w-full h-12  mt-2 border-4 border-black text-lg rounded-lg">
-                <select
-                  id="regions"
-                  name="regions"
-                  value={selectedRegion}
-                  onChange={handleRegionChange}
-                >
-                  <option value="">Select a Region</option>
-                  {regions.map((region) => (
-                    <option key={region.region} value={region.region}>
-                      {region.region}
-                    </option>
-                  ))}
-                </select>
-                {cities.length > 0 && (
-                  <div className="w-full h-12 mt-8 border-4 border-black text-lg rounded-lg">
-                    <label htmlFor="cities">Select City:</label>
-                    <select
-                      id="cities"
-                      name="cities"
-                      value={selectedCity}
-                      onChange={handleCityChange}
-                    >
-                      <option value="">Select a City</option>
-                      {cities.map((city) => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="w-full flex justify-center">
-            <button
-              onClick={sendOrder}
-              className={
-                isLoading
-                  ? "w-full text-lg py-2 mt-20 px-8 bg-gray-500 opacity-50 text-white  rounded-md"
-                  : "w-full text-lg py-2 mt-20 px-8 bg-green-700 text-white  rounded-md"
-              }
-              disabled={isLoading}
-            >
-              {isLoading ? <span>Loading...</span> : <span>Order</span>}
-            </button>
-          </div>
-        </form>
+      <div className="w-1/2 mx-auto flex justify-center">
+        <button
+          onClick={sendOrder}
+          className={
+            isLoading
+              ? "w-full text-lg py-2 mt-12 px-8 bg-gray-500 opacity-50 text-white  rounded-md"
+              : "w-full text-lg py-2 mt-12 px-8 bg-orange-500 text-white  rounded-md"
+          }
+          disabled={isLoading}>
+          {isLoading ? <span>Loading...</span> : <span>Order</span>}
+        </button>
       </div>
     </div>
   );

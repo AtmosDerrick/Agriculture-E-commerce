@@ -17,6 +17,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
 import AnimalChat from "./compoents/pages/AnimalChat";
 import Admin from "./compoents/pages/Admin/Admin";
+import FishChat from "./compoents/pages/FishChat";
 
 function App() {
   const [username, setUsername] = useState(" ");
@@ -45,7 +46,9 @@ function App() {
               <Route path="/expertchat" element={<ExpertChat />} />
               <Route path="/cropchat" element={<CropChat />} />
               <Route path="/animalchat" element={<AnimalChat />} />
+
               <Route path="admin" element={<Admin />} />
+              <Route path="/fishchat" element={<FishChat />} />
             </Routes>
           </BrowserRouter>
         </DatabaseContextProvider>

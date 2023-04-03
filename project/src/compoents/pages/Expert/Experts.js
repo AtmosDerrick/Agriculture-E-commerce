@@ -21,6 +21,8 @@ function Signin() {
           navigate("/expertchat");
         } else if (expertUser.email === "animalexpert@gmail.com") {
           navigate("/expertchat");
+        } else if (expertUser.email === "fishexpert@gmail.com") {
+          navigate("/expertchat");
         }
         console.log(expertUser, "expert user working");
         // ...
@@ -46,8 +48,7 @@ function Signin() {
             <div class="mb-4">
               <label
                 className="block text-gray-700 text-lg font-bold mb-2"
-                for="username"
-              >
+                for="username">
                 Email
               </label>
               <input
@@ -64,8 +65,7 @@ function Signin() {
             <div className="mb-6">
               <label
                 className="block text-gray-700 text-lg font-bold mb-2"
-                for="password"
-              >
+                for="password">
                 Password
               </label>
               <input
@@ -83,8 +83,7 @@ function Signin() {
           <button
             type="submit"
             className="bg-green-800 py-2 px-4 text-lg font-bold text-white"
-            onClick={signInExpert}
-          >
+            onClick={signInExpert}>
             Signin
           </button>
         </div>

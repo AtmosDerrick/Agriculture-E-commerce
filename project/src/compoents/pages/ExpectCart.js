@@ -11,6 +11,10 @@ function ExpectCart() {
   const animalRedirect = () => {
     navigate("/animalchat");
   };
+
+  const fishRedirect = () => {
+    navigate("/fishchat");
+  };
   return (
     <div>
       <div className="w-full bg-green-200 mx-auto rounded-lg py-4 mt-4 ">
@@ -18,8 +22,7 @@ function ExpectCart() {
           <div className=" flex justify-center mt-2 ">
             <button
               className="w-full font-medium  text-lg rounded-lg bg-white text-green-500 py-2 px-8 shadow-lg hover:opacity-80"
-              onClick={cropRedirect}
-            >
+              onClick={cropRedirect}>
               <i class="fa-solid fa-plant-wilt text-green-800"></i>
               Crop Farming
             </button>
@@ -28,14 +31,15 @@ function ExpectCart() {
           <div className=" flex justify-center mt-2 ">
             <button
               className="w-full font-medium  text-lg rounded-lg bg-white text-green-500 py-2 px-8 shadow-lg hover:opacity-80"
-              onClick={animalRedirect}
-            >
+              onClick={animalRedirect}>
               <i class="fa-solid fa-cow text-green-800"></i> Animal Farming
             </button>
           </div>
 
           <div className=" flex justify-center mt-2 ">
-            <button className="w-full font-medium  text-lg rounded-lg bg-white text-green-500 py-2 px-8 shadow-lg hover:opacity-80">
+            <button
+              className="w-full font-medium  text-lg rounded-lg bg-white text-green-500 py-2 px-8 shadow-lg hover:opacity-80"
+              onClick={fishRedirect}>
               <i class="fa-solid fa-fish text-green-800"></i> Fish Farming
             </button>
           </div>

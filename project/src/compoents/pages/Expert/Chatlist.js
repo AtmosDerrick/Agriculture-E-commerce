@@ -7,25 +7,15 @@ import Message from "../chat/Message";
 import { UserAuth } from "../../../context/AuthContext";
 import ExpertSentMessage from "../chat/ExpertSentMessage";
 
-function Chatlist() {
+function Chatlist({ category }) {
   const scroll = useRef();
   const { user } = UserAuth();
   const [messages, setMessages] = useState([]);
   const [userEmail, setUserEmail] = useState("");
-  const [category, setCategory] = useState("crop");
 
-  useEffect(() => {
-    console.log("sg", category);
-    if (user.email == "cropexpert@gmail.com") {
-      setCategory("crop");
-      console.log("sg", category);
-    } else if (user.email == "animalexpert@gmail.com") {
-      setCategory("animal");
-      console.log("sg", category);
-    } else {
-      setCategory("crop");
-    }
-  }, [user]);
+  console.log("cat in workinf", category);
+
+  //use effect to determin which category of expert
 
   useEffect(() => {
     console.log("sgq", category);
@@ -89,8 +79,7 @@ function Chatlist() {
                 className="bg-gray-100 br-4-green-800 mb-4 font-mono py-4 px-6 hover:cursor-pointer hover:shadow-lg"
                 onClick={() => {
                   viewChat(message.email);
-                }}
-              >
+                }}>
                 <div className="text-lg font-semibold text-green-700">
                   {message.name}
                 </div>
