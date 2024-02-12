@@ -4,7 +4,7 @@ import { UserAuth } from "../../../context/AuthContext";
 
 import { auth, store } from "../../../firebase";
 
-function SentMessage({ scroll, category }) {
+function SentMessage({ scroll, category, expertLocationEmail }) {
   const { user } = UserAuth();
 
   const [input, setInput] = useState("");
@@ -21,10 +21,12 @@ function SentMessage({ scroll, category }) {
       text: input,
       name: displayName,
       uid,
-      email: user.email,
+      reciever: user.email,
+      sender: expertLocationEmail,
 
       timestamp: serverTimestamp(),
     });
+    console.log("get expert locatin email", expertLocationEmail);
 
     setInput("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
@@ -33,8 +35,7 @@ function SentMessage({ scroll, category }) {
   return (
     <form
       onSubmit={sendMessage}
-      className="h-14 w-full max-w-[728px] flex text-xl absolute bottom-0"
-    >
+      className="h-14 w-full max-w-[728px] flex text-xl absolute bottom-0">
       <input
         value={input}
         onChange={(e) => {
@@ -44,7 +45,6 @@ function SentMessage({ scroll, category }) {
         type="text"
         placeholder="message"
       />
-      <input className="w-[20%] bg-orange-500 mr-4" type="file" accept=".jpg" />
 
       <button className="w-[20%] bg-green-500" type="submit">
         Send

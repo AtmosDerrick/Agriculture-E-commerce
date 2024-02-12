@@ -11,26 +11,7 @@ function Signin() {
 
   function signInExpert(e) {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const expertUser = userCredential.user;
-        if (expertUser.email === "admin@gmail.com") {
-          navigate("admin");
-        } else if (expertUser.email === "cropexpert@gmail.com") {
-          navigate("/expertchat");
-        } else if (expertUser.email === "animalexpert@gmail.com") {
-          navigate("/expertchat");
-        } else if (expertUser.email === "fishexpert@gmail.com") {
-          navigate("/expertchat");
-        }
-        console.log(expertUser, "expert user working");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    signInWithEmailAndPassword(auth, email, password);
   }
 
   return (

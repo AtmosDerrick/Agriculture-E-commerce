@@ -3,6 +3,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { UserAuth } from "../../context/AuthContext";
 
 import { auth, store } from "../../firebase";
+import Paystack from "../Paystack";
 function Order({
   productName,
   price,
@@ -17,6 +18,7 @@ function Order({
   const [selectedCity, setSelectedCity] = useState("");
   const [quantity, setQuantity] = useState("");
   const [Alert, setAlert] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -130,23 +132,34 @@ function Order({
 
         timestamp: serverTimestamp(),
       });
-
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        console.log("set time out");
+      }, 3000);
       setIsLoading(false);
+
       setQuantity("");
     }
   };
 
   return (
-    <div className="w-2/4  mx-auto rounded-lg h-[30rem] ">
+    <div className="w-3/4  mx-auto rounded-lg h-[40rem] ">
       <div className="">
         {Alert && (
           <div className="w-full bg-red-600 text-white text-lg py-2  text-center mb-2">
             Complete your details
           </div>
         )}
-        <div className="w-full  ">
-          <div className="w-full mx-auto   flex center ">
-            <img src={url} alt={productName} className="w-full h-[15rem]" />
+
+        {isSuccess && (
+          <div className="w-full bg-green-600 text-white text-lg py-2  text-center mb-2">
+            Order successful
+          </div>
+        )}
+        <div className="w-full   ">
+          <div className="w-1/2 mx-auto   flex center ">
+            <img src={url} alt={productName} className=" h-[15rem]" />
           </div>
         </div>
 
@@ -233,17 +246,19 @@ function Order({
           </form>
         </div>
       </div>
-      <div className="w-1/2 mx-auto flex justify-center">
-        <button
-          onClick={sendOrder}
-          className={
-            isLoading
-              ? "w-full text-lg py-2 mt-12 px-8 bg-gray-500 opacity-50 text-white  rounded-md"
-              : "w-full text-lg py-2 mt-12 px-8 bg-orange-500 text-white  rounded-md"
-          }
-          disabled={isLoading}>
-          {isLoading ? <span>Loading...</span> : <span>Order</span>}
-        </button>
+      <div>
+        <div className="w-1/2 mx-auto flex justify-center">
+          <button
+            onClick={sendOrder}
+            className={
+              isLoading
+                ? "w-full text-lg py-2 mt-12 px-8 bg-gray-500 opacity-50 text-white  rounded-md"
+                : "w-full text-lg py-2 mt-12 px-8 bg-orange-500 text-white  rounded-md"
+            }
+            disabled={isLoading}>
+            {isLoading ? <span>Loading...</span> : <span>Order</span>}
+          </button>
+        </div>
       </div>
     </div>
   );

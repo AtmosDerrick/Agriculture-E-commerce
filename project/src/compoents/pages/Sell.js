@@ -43,17 +43,103 @@ function Sell() {
   const [isLoading, setIsLoading] = useState(false);
   const [Alert, setAlert] = useState(false);
   const [orderRecieve, setOrderRecieve] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   let userEmail = user.email;
+  const handleRegionChange = (event) => {
+    setSelectedRegion(event.target.value);
+    setSelectedCity("");
+  };
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
+  const regions = [
+    {
+      region: "Greater Accra Region",
+      cities: ["Accra", "Tema", "Madina", "Dansoman"],
+    },
+    {
+      region: "Ashanti Region",
+      cities: ["Kumasi", "Obuasi", "Bekwai", "Mampong"],
+    },
+    {
+      region: "Central Region",
+      cities: ["Cape Coast", "Winneba", "Mankessim", "Elmina"],
+    },
+    {
+      region: "Eastern Region",
+      cities: ["Koforidua", "Nkawkaw", "Akosombo", "Begoro"],
+    },
+    {
+      region: "Western Region",
+      cities: ["Takoradi", "Sekondi", "Axim", "Tarkwa"],
+    },
+    {
+      region: "Northern Region",
+      cities: ["Tamale", "Yendi", "Savelugu", "Bimbila"],
+    },
+    {
+      region: "Upper East Region",
+      cities: ["Bolgatanga", "Navrongo", "Bawku", "Zebilla"],
+    },
+    {
+      region: "Upper West Region",
+      cities: ["Wa", "Tumu", "Nandom", "Lawra"],
+    },
+    {
+      region: "Volta Region",
+      cities: ["Ho", "Keta", "Aflao", "Kpando", "Hohoe"],
+    },
+    {
+      region: "Bono Region",
+      cities: ["Sunyani", "Techiman", "Wenchi", "Berekum"],
+    },
+    {
+      region: "Ahafo Region",
+      cities: ["Goaso", "Hwidiem", "Kenyasi", "Bechem"],
+    },
+    {
+      region: "Bono East Region",
+      cities: ["Kintampo", "Nkoranza", "Atebubu", "Techiman North"],
+    },
+    {
+      region: "Savannah Region",
+      cities: ["Damongo", "Buipe", "Yapei", "Sawla"],
+    },
+    {
+      region: "North East Region",
+      cities: ["Nalerigu", "Bunkpurugu", "Walewale", "Gambaga"],
+    },
+    {
+      region: "Oti Region",
+      cities: ["Dambai", "Kadjebi", "Jasikan", "Kete Krachi"],
+    },
+    {
+      region: "Western North Region",
+      cities: ["Sefwi Wiawso", "Enchi", "Bibiani", "Sefwi Bekwai"],
+    },
+  ];
+
+  const selectedRegionObj = regions.find(
+    (region) => region.region === selectedRegion
+  );
+  const cities = selectedRegionObj ? selectedRegionObj.cities : [];
   console.log("image", image);
 
   const submitForm = (e) => {
-    if (productName === "" || price === "" || location === "") {
+    if (
+      productName === "" ||
+      price === "" ||
+      selectedRegion === "" ||
+      selectedCity === ""
+    ) {
       setAlert(true);
       setTimeout(() => {
         setAlert(false);
@@ -79,7 +165,7 @@ function Sell() {
                 productName,
                 category,
                 price,
-                location,
+                location: selectedCity,
                 contact,
                 description,
                 uuid,
@@ -97,6 +183,11 @@ function Sell() {
           console.log(error.message, "error getting image url");
         });
       console.log("url", url);
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        console.log("set time out");
+      }, 3000);
 
       setProductName("");
       setPrice("");
@@ -153,6 +244,12 @@ function Sell() {
           Complete your details
         </div>
       )}
+
+      {isSuccess && (
+        <div className="w-full bg-green-600 text-white text-lg py-2  text-center mb-2">
+          Items uploaded successfully
+        </div>
+      )}
       <div className="w-full mx-auto flex justify-between gap-2 sell py-2">
         <form class="bg-white w-1/2  mr-4 mx-auto rounded-lg  px-8 pt-6 pb-2 mb-4 shadow-lg">
           <div class="mb-4">
@@ -185,7 +282,7 @@ function Sell() {
               onChange={(e) => {
                 setCategory(e.target.value);
               }}>
-              <option value="machinery" disabled>
+              <option value="" disabled>
                 Select Product type and service
               </option>
               <option value="machinery">Machinery Rentals</option>
@@ -217,23 +314,38 @@ function Sell() {
             />
           </div>
 
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 text-sm font-bold "
-              for="username">
-              Location
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              maxlength="20"
-              type="text"
-              placeholder="Accra"
-              value={location}
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-            />
+          <div class="mb-24">
+            <div className="w-full h-12  mt-2 border-4 border-black text-lg rounded-lg">
+              <select
+                id="regions"
+                name="regions"
+                value={selectedRegion}
+                onChange={handleRegionChange}>
+                <option value="">Select a Region</option>
+                {regions.map((region) => (
+                  <option key={region.region} value={region.region}>
+                    {region.region}
+                  </option>
+                ))}
+              </select>
+              {cities.length > 0 && (
+                <div className="w-full h-12 mt-8 border-4 border-black text-lg rounded-lg">
+                  <label htmlFor="cities">Select City:</label>
+                  <select
+                    id="cities"
+                    name="cities"
+                    value={selectedCity}
+                    onChange={handleCityChange}>
+                    <option value="">Select a City</option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
 
           <div class="mb-4">
@@ -243,7 +355,7 @@ function Sell() {
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="phone"
-              type="tel"
+              type="number"
               name="phone"
               maxLength="10"
               placeholder="0247777777"

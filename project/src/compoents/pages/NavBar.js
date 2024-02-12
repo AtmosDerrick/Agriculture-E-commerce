@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import SignButton from "./SignButton";
 
-import Signin from "./Signin";
 import ExpertSignin from "./Expert/ExpertSignin";
 
 export default function Navbar() {
   const { user, logOut } = UserAuth();
   const navigate = useNavigate();
-  const expertEmail = "atmosderrick@gmail.com";
 
   console.log("expert userrrrrrr", user);
 
@@ -27,15 +26,17 @@ export default function Navbar() {
         navigate("admin");
       } else if (
         user.email === "cropexpert@gmail.com" ||
-        user.email === "animalexpert@gmail.com"
+        user.email === "animalexpert@gmail.com" ||
+        user.email === "fishexpert@gmail.com"
       ) {
         navigate("/expertchat");
       } else {
         navigate("/category");
-        console.log("man", user);
+        console.log("man2222", user);
       }
     } else {
       navigate("/");
+      console.log("u are disctub 5555555");
     }
   }, [user]);
   return (
@@ -52,15 +53,14 @@ export default function Navbar() {
           <div>
             <button
               className="text-lg bg-red-500 py-2 px-4 text-white font-bold"
-              onClick={handleSignOut}
-            >
+              onClick={handleSignOut}>
               Logout
             </button>
           </div>
         </div>
       ) : (
         <div className="flex justify-between">
-          <Signin />
+          <SignButton />
           <ExpertSignin />
         </div>
       )}

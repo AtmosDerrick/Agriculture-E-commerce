@@ -137,8 +137,8 @@ function BuySell() {
             <div
               className={
                 !clickOrder
-                  ? "grid grid-cols-5 gap-4 mt-8"
-                  : "grid grid-cols-3 gap-4 mt-8"
+                  ? "grid grid-cols-4 gap-4 mt-8"
+                  : "grid grid-cols-2 gap-4 mt-8"
               }>
               {products.map((product) => (
                 <div

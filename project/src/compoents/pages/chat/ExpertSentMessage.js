@@ -9,7 +9,7 @@ function ExpertSentMessage({ scroll, category, receiver }) {
   const [input, setInput] = useState("");
   console.log("sentmessage", category);
 
-  console.log("inputtt", receiver);
+  console.log("inputttR", receiver);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -22,11 +22,18 @@ function ExpertSentMessage({ scroll, category, receiver }) {
       text: input,
       name: displayName,
       uid,
-      email: user.email,
-      recieve: receiver,
+      sender: user.email,
+      reciever: receiver,
 
       timestamp: serverTimestamp(),
     });
+
+    console.log(
+      "expert sent email expert email:",
+      user.email,
+      "user",
+      receiver
+    );
 
     setInput("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
@@ -35,8 +42,7 @@ function ExpertSentMessage({ scroll, category, receiver }) {
     <div>
       <form
         onSubmit={sendMessage}
-        className="h-14 w-full max-w-[728px] flex text-xl absolute bottom-0"
-      >
+        className="h-14 w-full max-w-[728px] flex text-xl absolute bottom-0">
         <input
           value={input}
           onChange={(e) => {

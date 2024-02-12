@@ -17,7 +17,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex justify-between mr-8 ">
+    <div className="flex justify-center mr-8 ">
       <GoogleButton onClick={handleGoogleSignIn} />
     </div>
   );

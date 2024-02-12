@@ -18,8 +18,15 @@ import { DatabaseContextProvider } from "./context/DatabaseContext";
 import AnimalChat from "./compoents/pages/AnimalChat";
 import Admin from "./compoents/pages/Admin/Admin";
 import FishChat from "./compoents/pages/FishChat";
+import Usersignin from "./compoents/pages/Usersignin";
+import Signupnew from "./compoents/pages/Signupnew";
+import { firebaseAnalytics } from "./firebase";
+
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 function App() {
+  const analytics = getAnalytics();
+  logEvent(analytics, "notification_received");
   const [username, setUsername] = useState(" ");
 
   return (
@@ -31,6 +38,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<LandingP />} />
+
               <Route
                 path="/category"
                 element={
@@ -39,6 +47,7 @@ function App() {
                   </Protected>
                 }
               />
+
               <Route path="/buyandsell" element={<BuySell />} />
               <Route path="/sell" element={<Sell />} />
               <Route path="/experts" element={<Experts />} />
@@ -48,6 +57,9 @@ function App() {
               <Route path="/animalchat" element={<AnimalChat />} />
 
               <Route path="admin" element={<Admin />} />
+              <Route path="/usersignin" element={<Usersignin />} />
+              <Route path="/usersignup" element={<Signupnew />} />
+
               <Route path="/fishchat" element={<FishChat />} />
             </Routes>
           </BrowserRouter>

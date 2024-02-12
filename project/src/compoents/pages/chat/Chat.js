@@ -30,9 +30,11 @@ function Chat({ messagesChatCategory, expertLocationEmail }) {
 
   const fetchMessage = messages.filter((message) => {
     return (
-      message.email === user.email || message.email === expertLocationEmail
+      message.reciever == user.email && message.sender == expertLocationEmail
     );
   });
+
+  console.log(expertLocationEmail, "working see expert");
 
   console.log("fetch message", fetchMessage);
 
@@ -45,7 +47,11 @@ function Chat({ messagesChatCategory, expertLocationEmail }) {
             <Message key={message.id} message={message} />
           ))}
       </main>
-      <SentMessage scroll={scroll} category={category} />
+      <SentMessage
+        scroll={scroll}
+        category={category}
+        expertLocationEmail={expertLocationEmail}
+      />
       {/*send message component*/}
       <span ref={scroll}></span>
     </div>

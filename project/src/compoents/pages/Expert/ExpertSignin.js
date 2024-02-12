@@ -10,10 +10,9 @@ function ExpertSignin() {
   return (
     <div>
       <button
-        className=" text-black bg-gray-100 italic   py-2 px-2 font-bold tracking-normal text-lg "
-        onClick={siginPage}
-      >
-        Expert / Admin
+        className=" border-4 text-white    py-2 px-2 font-bold tracking-normal text-lg "
+        onClick={siginPage}>
+        Experts
       </button>
     </div>
   );

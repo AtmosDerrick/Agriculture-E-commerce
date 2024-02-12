@@ -17,6 +17,9 @@ function ExpertChat() {
 
   return (
     <div className="">
+      <div className="text-2xl text-orange-500 font-semibold py-2 ">
+        Expert Chat >
+      </div>
       <Chatlist category={category} />
     </div>
   );
